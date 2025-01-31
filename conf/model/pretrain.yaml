@@ -1,0 +1,21 @@
+_target_: model.pl_modules.energy_model.CSPPretrain  # CSPEnergy or CSPEnergy_denoising or Matformer_pl
+time_dim: 256
+latent_dim: 0
+cost_coord: 1.
+cost_lattice: 1.
+cost_type: 1.
+max_neighbors: 20  # maximum number of neighbors for OTF graph bulding in decoder
+radius: 7.  # maximum search radius for OTF graph building in decoder
+timesteps: 1000
+update_type: False
+denoising: True
+loss_type: cosine
+frac_noise: Riemann
+lattice_noise: Riemann
+pred_other_scalar: False
+energy_only: False
+
+defaults:
+  - decoder: cspnet   # cspnet or matformer
+  - beta_scheduler: cosine
+  - sigma_scheduler: wrapped

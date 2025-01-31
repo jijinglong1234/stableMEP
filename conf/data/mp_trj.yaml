@@ -1,0 +1,92 @@
+prop: ef_per_atom
+root_path: ${oc.env:PROJECT_ROOT}/data/mp_trj
+niggli: true
+primitive: false
+graph_method: crystalnn
+tolerance: 0.1
+max_atoms: 200
+
+lattice_scale_method: scale_length
+preprocess_workers: ${cpu_source}
+dataset_name: mp_trj  # mp_trj
+
+use_space_group: False
+use_pos_index: False
+train_max_epochs: 300
+early_stopping_patience: 100000
+teacher_forcing_max_epoch: 500
+
+split_seed: 123
+train_ratio: 0.0
+val_ratio: 0.0
+test_ratio: 0.1
+total_size: 1580395
+n_train: null
+n_test: null
+n_val: null
+keep_data_order: false
+
+datamodule:
+  _target_: data.datamodule.CrystDataModule
+
+  num_workers:
+    train: 18
+    val: 18
+    test: 18
+
+  batch_size:
+    train: 8
+    val: 4
+    test: 2
+
+  datasets:
+    train:
+      _target_: data.mp_dataset.CrystDataset
+      name: Formation energy train
+      prop: ${data.prop}
+      save_path: ${data.root_path}/train_ori.pt
+      niggli: ${data.niggli}
+      primitive: ${data.primitive}
+      graph_method: ${data.graph_method}
+      tolerance: ${data.tolerance}
+      use_space_group: ${data.use_space_group}
+      use_pos_index: ${data.use_pos_index}
+      lattice_scale_method: ${data.lattice_scale_method}
+      preprocess_workers: ${data.preprocess_workers}
+      dataset_name: ${data.dataset_name}
+      id_list_name: ${data.root_path}/seed_${train.random_seed}_train.pkl
+      max_atoms: ${data.max_atoms}
+    val:
+      - _target_: data.mp_dataset.CrystDataset
+        name: Formation energy val
+        prop: ${data.prop}
+        save_path: ${data.root_path}/val_ori.pt
+        niggli: ${data.niggli}
+        primitive: ${data.primitive}
+        graph_method: ${data.graph_method}
+        tolerance: ${data.tolerance}
+        use_space_group: ${data.use_space_group}
+        use_pos_index: ${data.use_pos_index}
+        lattice_scale_method: ${data.lattice_scale_method}
+        preprocess_workers: ${data.preprocess_workers}
+        dataset_name: ${data.dataset_name}
+        id_list_name: ${data.root_path}/seed_${train.random_seed}_val.pkl
+        max_atoms: ${data.max_atoms}
+
+    test:
+      - _target_: data.mp_dataset.CrystDataset
+        name: Formation energy test
+        prop: ${data.prop}
+        save_path: ${data.root_path}/test_ori_0.1.pt
+        niggli: ${data.niggli}
+        primitive: ${data.primitive}
+        graph_method: ${data.graph_method}
+        tolerance: ${data.tolerance}
+        use_space_group: ${data.use_space_group}
+        use_pos_index: ${data.use_pos_index}
+        lattice_scale_method: ${data.lattice_scale_method}
+        preprocess_workers: ${data.preprocess_workers}
+        dataset_name: ${data.dataset_name}
+        id_list_name: ${data.root_path}/seed_${train.random_seed}_test_0.1.pkl
+        max_atoms: ${data.max_atoms}
+

@@ -1,0 +1,32 @@
+expname:
+  pretrain_test
+
+# metadata specialised for each experiment
+core:
+  version: 0.0.1
+  tags:
+    - ${now:%Y-%m-%d}
+
+hydra:
+  run:
+    dir: ${oc.env:HYDRA_JOBS}/singlerun/${now:%Y-%m-%d}/${now:%H-%M-%S}'}/${expname}/
+
+  sweep:
+    dir: ${oc.env:HYDRA_JOBS}/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}'}/${expname}/
+    subdir: ${hydra.job.num}_${hydra.job.id}
+
+  job:
+    env_set:
+      WANDB_START_METHOD: thread
+      WANDB_DIR: ${oc.env:WABDB_DIR}
+cpu_source: 144
+
+
+defaults:
+  - data: m3gnet_mpf   # m3gnet_mpf or material_projects or mp_trj or jarvis or visualize
+  - model: pretrain
+  - logging: default
+  - optim: default
+  - train: default
+
+
