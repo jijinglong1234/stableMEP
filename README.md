@@ -1,8 +1,12 @@
 # stableMEP
 Implementation codes for Neural Network Potentials with Pseudo-Labels of Force and Stress.
 
-# Training
+### Training
+```
 python scripts/hydra_testing.py
+```
 
-# Testing
+### Testing
+```
 python scripts/testing.py
+```
