@@ -135,11 +135,11 @@ def visualize_crystal(atom_types, lattice_tensor, atom_coords, atom_forces, frac
 
 
 N = 10
-atom_types = np.random.randint(1, 4, size=N)  # 假设有3种原子类型
+atom_types = np.random.randint(1, 4, size=N) 
 lattice = np.array([[5, 0, 0],
                            [0, 5, 0],
                            [0, 0, 5]])
-atom_coords = np.random.rand(N, 3) * 5  # 在晶胞内随机分布
-forces = (np.random.rand(N, 3) - 0.5) * 1  # 随机力向量
+atom_coords = np.random.rand(N, 3) * 5  
+forces = (np.random.rand(N, 3) - 0.5) * 1  
 
 visualize_crystal(atom_types, lattice, atom_coords, forces)
