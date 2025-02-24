@@ -67,32 +67,8 @@ def run(cfg:DictConfig):
     # ---- print config ----
     print(OmegaConf.to_yaml(cfg))
 
-    # hydra_dir_str = "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-09-20/10-47-43'}/lc_fr_lr_4"
-    # hydra_dir_str = "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-09-20/11-19-30'}/energy_only"
-    # hydra_dir_str = "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-11/12-42-15'}/lm_fn_ln"
-    # mae
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-09/11-08-03'}/lc_fr_lrnew"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-09/11-09-39'}/lc_fr_lnnew"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-09/11-11-53'}/lc_fn_lrnew"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-09/11-13-46'}/lc_fn_lnnew"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-09/11-22-54'}/lm_fr_lrnew"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-09/11-16-44'}/lm_fr_lnnew"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-09/11-18-02'}/lm_fn_lrnew"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-09/11-18-36'}/lm_fn_lnnew"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-28/11-28-06'}/energy_only"
 
-    # mse
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-28/18-41-01'}/energy_only"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-28/18-45-04'}/lc_fr_lr_emse"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-28/18-45-51'}/lc_fr_ln_emse"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-28/18-46-35'}/lc_fn_lr_emse"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-28/18-47-10'}/lc_fn_ln_emse"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-28/18-47-33'}/lm_fr_lr_emse"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-10-28/18-48-07'}/lm_fr_ln_emse"
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-11-01/10-59-09'}/lm_fn_lr_emse"  # notice the date
-    # "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-11-01/10-57-58'}/lm_fn_ln_emse"  # notice the date
-
-    hydra_dir_str = "/home/huangjiao/codes/stableMPP/outputs/hydra/singlerun/2024-11-01/10-57-58'}/lm_fn_ln_emse"
+    hydra_dir_str = ""
 
     # hydra_dir = Path(HydraConfig.get().run.dir)
     hydra_dir = Path(hydra_dir_str)
@@ -146,7 +122,7 @@ def run(cfg:DictConfig):
 
     # Logger instantiation/configuration
     wandb_logger = None
-    wandb.login(key="29e839bd27fe2c8a0058a0e0cf94f8d9e39b7a93")
+    wandb.login(key="")
     if "wandb" in cfg.logging:
         hydra.utils.log.info("Instantiating <WandbLogger>")
         wandb_config = cfg.logging.wandb
